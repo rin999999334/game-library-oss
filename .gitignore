@@ -1,0 +1,42 @@
+node_modules/
+dist/
+.env*
+!.env.example
+.vercel/
+.DS_Store
+
+# Local demo builds and generated review artifacts
+dist-demo/
+*.tsbuildinfo
+*.log
+/release-*.jpg
+/*-screen.jpg
+/docs/release/
+/docs/*.png
+/scripts/*report.json
+/scripts/*candidates.json
+/scripts/*urls.json
+/scripts/*links.json
+
+# Local publication reports (regenerate with npm run audit:public)
+/publication-audit.json
+
+# Historical production audits and environment-specific maintenance helpers
+/docs/DB_*.md
+/docs/ADMIN_REVIEW_*.md
+/docs/IOS_MOTION_AUDIT_*.md
+/scripts/build-audit-corrections.mjs
+/scripts/read-audit-followup.mjs
+/scripts/import-*.mjs
+/scripts/export-blog-links.ts
+/scripts/build-game-favicons.ts
+
+.local-backups/
+.publication/
+/scripts/*audit.json
+/scripts/measure-audit-images.py
+
+# Editor temporary files
+*.swp
+*.swo
+*~

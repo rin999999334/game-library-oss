@@ -1,0 +1,51 @@
+/* Images fade in when ready. Keeping the surrounding tile visible avoids
+   a second opacity animation when another page of cards is appended. */
+
+.ranking-extra-rows:not([hidden]) {
+  animation: ranking-rows-reveal 150ms ease-out both;
+}
+
+.game .game-tile,
+.card-item .card-art {
+  transition: transform 280ms var(--motion-spring);
+}
+
+button.table-expand-btn {
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+button.table-expand-btn:active {
+  background-color: rgba(0, 0, 0, .025);
+}
+
+button.table-expand-btn .icon {
+  transition: transform 280ms var(--motion-spring);
+}
+
+@keyframes ranking-rows-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ranking-extra-rows:not([hidden]) {
+    animation: none;
+  }
+
+  .game .game-tile,
+  .card-item .card-art,
+  button.table-expand-btn,
+  button.table-expand-btn .icon {
+    transition: none;
+  }
+
+  .game.game:active .game-tile,
+  .card-item.card-item:active .card-art {
+    transform: none;
+  }
+}
+
+.card-image[data-ready] { opacity: 0; transition: opacity 180ms ease-out; }
+.card-image[data-ready="true"] { opacity: 1; }
+.game.game:active .game-tile, .card-item.card-item:active .card-art { transition-duration: 65ms; }
+@media (prefers-reduced-motion: reduce) { .card-image[data-ready] { transition: none; } }

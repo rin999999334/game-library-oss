@@ -1,0 +1,78 @@
+.card-artwork {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  background: var(--bg-light);
+}
+
+/* Keep the source's aspect ratio, including landscape and square scans. */
+.card-artwork > .card-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.card-artwork-expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 8px 0 0 auto;
+  border-radius: 10px;
+  background: var(--glass-bg);
+  color: var(--text-muted);
+}
+
+.card-artwork-expand > .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.card-artwork > .image-missing {
+  min-height: 200px;
+}
+
+.card-image-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 80px;
+  height: calc(100dvh - 220px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  border-radius: 16px;
+  background: var(--bg-light);
+  touch-action: pan-x pan-y pinch-zoom;
+}
+
+/* A definite viewport budget and min-height: 0 prevent flex items overflowing. */
+.card-image-viewer > .card-image {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-image-viewer > .image-missing {
+  min-height: 80px;
+}
+
+@media (min-width: 441px) {
+  .card-image-viewer {
+    height: calc(min(874px, 100dvh - 40px) - 220px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (display-mode: standalone) {
+  .card-image-viewer {
+    height: calc(100dvh - 220px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+}

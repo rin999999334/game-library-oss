@@ -1,0 +1,14 @@
+name: 不具合・改善提案
+description: 表示の問題や、機能の改善を伝える
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 困っていること・期待する動作
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順・確認した環境
+      description: デモまたは本番、端末、ブラウザなど。

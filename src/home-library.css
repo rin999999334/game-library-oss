@@ -1,0 +1,32 @@
+.home-library-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.home-library-context {
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: right;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.home-library-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-library-section + .home-library-section {
+  margin-top: 8px;
+}
+
+.home-library-year {
+  margin: 0;
+  color: #b9b9b9;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}

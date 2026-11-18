@@ -1,0 +1,30 @@
+{
+  "target_person": {
+    "id": "613227a7-986f-5670-b64b-2acaa7feaa29",
+    "display_name": "サンプル人物",
+    "code_name": "sample-code",
+    "joined_year": 2015
+  },
+  "before": {
+    "id": "0a840e5d-3e18-521e-80b4-977139534fe8",
+    "person_id": "68c68d22-e914-5d23-afb7-e2c6da552623",
+    "event_id": "97d2bd79-e27a-5002-a4f2-8f866a20749b",
+    "team_id": "8f324d1b-2a4f-5ee5-86f1-c741c31f3049",
+    "role_id": null,
+    "kind": "participant",
+    "name_at_event": null,
+    "status": "attended",
+    "grade_at_event": 1
+  },
+  "after": {
+    "id": "0a840e5d-3e18-521e-80b4-977139534fe8",
+    "person_id": "613227a7-986f-5670-b64b-2acaa7feaa29",
+    "event_id": "97d2bd79-e27a-5002-a4f2-8f866a20749b",
+    "team_id": "8f324d1b-2a4f-5ee5-86f1-c741c31f3049",
+    "role_id": null,
+    "kind": "participant",
+    "name_at_event": null,
+    "status": "attended",
+    "grade_at_event": 1
+  }
+}

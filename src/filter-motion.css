@@ -1,0 +1,102 @@
+.card-filter-dialog[open][data-motion="opening"] {
+  animation: filter-sheet-enter 360ms var(--motion-ease) both;
+}
+
+.card-filter-dialog[open][data-motion="opening"]::backdrop {
+  animation: filter-backdrop-enter 300ms ease-out both;
+}
+
+.card-filter-dialog[open][data-motion="closing"] {
+  animation: filter-sheet-exit var(--sheet-exit-duration, 240ms) cubic-bezier(.3, 0, .8, .5) both;
+}
+
+.card-filter-dialog[open][data-motion="closing"]::backdrop {
+  animation: filter-backdrop-exit var(--sheet-exit-duration, 240ms) ease-in both;
+}
+
+.card-filter-dialog[open][data-motion="closing"] > * {
+  pointer-events: none;
+}
+
+.filter-sheet-grab {
+  display: grid;
+  place-items: center;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.filter-sheet-grab .filter-sheet-handle {
+  margin: 0;
+}
+
+.filter-sheet-grab,
+.filter-sheet-header {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.card-filter-dialog[open][data-motion="dragging"] {
+  transform: translateY(var(--sheet-drag-y, 0px));
+}
+
+.card-filter-dialog[open][data-motion="dragging"]::backdrop {
+  opacity: var(--sheet-drag-backdrop-opacity, 1);
+}
+
+.card-filter-dialog[data-motion="dragging"] .filter-sheet-grab,
+.card-filter-dialog[data-motion="dragging"] .filter-sheet-header {
+  cursor: grabbing;
+}
+
+.card-filter-dialog[open][data-motion="snapping"] {
+  animation: filter-sheet-snap 340ms var(--motion-spring) both;
+}
+
+.card-filter-dialog[open][data-motion="snapping"]::backdrop {
+  animation: filter-backdrop-snap 340ms var(--motion-spring) both;
+}
+
+@keyframes filter-sheet-enter {
+  from { transform: translateY(100%); opacity: 1; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes filter-sheet-exit {
+  from { transform: var(--sheet-exit-transform, translateY(0)); opacity: var(--sheet-exit-opacity, 1); }
+  to { transform: translateY(100%); opacity: 1; }
+}
+
+@keyframes filter-sheet-snap {
+  from { transform: translateY(var(--sheet-drag-y, 0px)); }
+  to { transform: translateY(0); }
+}
+
+@keyframes filter-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes filter-backdrop-exit {
+  from { opacity: var(--sheet-exit-backdrop-opacity, 1); }
+  to { opacity: 0; }
+}
+
+@keyframes filter-backdrop-snap {
+  from { opacity: var(--sheet-drag-backdrop-opacity, 1); }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-filter-dialog[open][data-motion],
+  .card-filter-dialog[open][data-motion]::backdrop {
+    animation: none !important;
+  }
+
+  .card-filter-dialog[open][data-motion]:not([data-motion="dragging"]),
+  .card-filter-dialog[open][data-motion]:not([data-motion="dragging"])::backdrop {
+    transform: none;
+    opacity: 1;
+  }
+}

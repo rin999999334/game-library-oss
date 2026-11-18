@@ -1,0 +1,82 @@
+.bottom-tabs {
+  isolation: isolate;
+}
+
+.bottom-tabs-selection {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  border-radius: 25px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+  pointer-events: none;
+  transform: translateX(0);
+  transition: transform 280ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.bottom-tabs--cards .bottom-tabs-selection {
+  transform: translateX(100%);
+}
+
+.bottom-tabs--search .bottom-tabs-selection {
+  transform: translateX(200%);
+}
+
+.bottom-tabs .tab,
+.bottom-tabs .tab.active {
+  position: relative;
+  z-index: 1;
+  background: none;
+  box-shadow: none;
+  transition: color 180ms ease;
+}
+
+.bottom-tabs-icon {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  transition: transform 160ms ease-out;
+}
+
+.bottom-tabs-label {
+  display: block;
+  transition: transform 160ms ease-out, opacity 160ms ease-out;
+}
+
+.bottom-tabs .tab:active .bottom-tabs-icon {
+  transform: scale(.9);
+}
+
+.bottom-tabs .tab:active .bottom-tabs-label {
+  transform: translateY(1px);
+  opacity: .78;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-tabs-selection,
+  .bottom-tabs .tab,
+  .bottom-tabs-icon,
+  .bottom-tabs-label {
+    transition: none;
+  }
+
+  .bottom-tabs .tab:active .bottom-tabs-icon,
+  .bottom-tabs .tab:active .bottom-tabs-label {
+    transform: none;
+  }
+}
+
+.bottom-tabs { touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.bottom-tabs .bottom-tabs-selection { transition: transform 380ms var(--motion-spring); }
+.bottom-tabs[data-dragging] .bottom-tabs-selection { transition: none; transform: translateX(var(--tab-drag-x)); }
+.bottom-tabs .bottom-tabs-icon,
+.bottom-tabs .bottom-tabs-label { transition: transform 280ms var(--motion-spring), opacity 180ms ease-out; }
+.bottom-tabs .tab:active .bottom-tabs-icon { transform: scale(.86); transition-duration: 65ms; }
+.bottom-tabs .tab:active .bottom-tabs-label { transition-duration: 65ms; }
+@media (prefers-reduced-motion: reduce) {
+  .bottom-tabs .bottom-tabs-selection, .bottom-tabs .bottom-tabs-icon, .bottom-tabs .bottom-tabs-label { transition: none; }
+  .bottom-tabs .tab:active .bottom-tabs-icon { transform: none; }
+}

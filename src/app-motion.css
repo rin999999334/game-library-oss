@@ -1,0 +1,56 @@
+:root {
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-spring: cubic-bezier(.22, 1.12, .36, 1);
+  view-transition-name: none;
+}
+.scroll { overflow-x: hidden; background: #fff; }
+/* Capture only the clipped viewport, never the full, growing card collection.
+   The bottom bar stays live and responds during a route transition. */
+html[data-route-motion] .scroll { view-transition-name: route-content; }
+html[data-route-motion] .bottom-tabs { view-transition-name: route-tabs; }
+::view-transition-group(route-tabs) { animation: none; z-index: 3; }
+::view-transition-old(route-tabs) { display: none; }
+::view-transition-new(route-tabs) { animation: none; height: 100%; }
+::view-transition { pointer-events: none; }
+::view-transition-group(route-content) { animation: none; overflow: clip; }
+::view-transition-image-pair(route-content) { isolation: isolate; }
+::view-transition-old(route-content),
+::view-transition-new(route-content) {
+  height: 100%;
+  mix-blend-mode: normal;
+  animation-duration: 340ms;
+  animation-timing-function: var(--motion-ease);
+  animation-fill-mode: both;
+}
+html[data-route-motion="forward"]::view-transition-old(route-content) { animation-name: route-recede; }
+html[data-route-motion="forward"]::view-transition-new(route-content) { animation-name: route-push; }
+html[data-route-motion="back"]::view-transition-old(route-content) { animation-name: route-pop; z-index: 2; }
+html[data-route-motion="back"]::view-transition-new(route-content) { animation-name: route-return; z-index: 1; }
+html[data-route-motion="tab"]::view-transition-old(route-content) { animation: route-fade-out 160ms ease-out both; }
+html[data-route-motion="tab"]::view-transition-new(route-content) { animation: route-fade-in 240ms var(--motion-ease) both; }
+@keyframes route-push { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes route-recede { to { transform: translateX(-18%); opacity: .75; } }
+@keyframes route-pop { to { transform: translateX(100%); } }
+@keyframes route-return { from { transform: translateX(-18%); opacity: .75; } to { transform: translateX(0); opacity: 1; } }
+@keyframes route-fade-out { to { opacity: 0; } }
+@keyframes route-fade-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Entry fallback for browsers without View Transitions. */
+html:not([data-motion-engine="native"]) .page-content[data-navigation-motion="forward"] { animation: page-forward 300ms var(--motion-ease) both; }
+html:not([data-motion-engine="native"]) .page-content[data-navigation-motion="back"] { animation: page-back 300ms var(--motion-ease) both; }
+html:not([data-motion-engine="native"]) .page-content[data-navigation-motion="tab"] { animation: page-tab 220ms ease-out both; }
+html[data-route-motion] .page-content { animation: none; }
+.nav-title[data-navigation-motion]:not([data-navigation-motion="none"]) { animation: title-enter 220ms ease-out both; }
+button.icon-button { transition: transform 260ms var(--motion-spring), color 160ms ease, background 160ms ease; touch-action: manipulation; }
+button.icon-button:active { transform: scale(.91); transition-duration: 70ms; }
+.card-filter-clear { animation: title-enter 180ms ease-out both; }
+@keyframes page-forward { from { opacity: .4; transform: translateX(32px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes page-back { from { opacity: .4; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes page-tab { from { opacity: .5; } to { opacity: 1; } }
+@keyframes title-enter { from { opacity: .4; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  html[data-route-motion] .scroll { view-transition-name: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .page-content[data-navigation-motion], .nav-title[data-navigation-motion] { animation: none !important; transform: none; opacity: 1; }
+  button.icon-button:active { transform: none; }
+}

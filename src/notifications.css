@@ -1,0 +1,10 @@
+.notification-settings { display:flex; flex-direction:column; align-items:center; gap:20px; padding:28px 6px; text-align:center; }
+.notification-settings p {font-size:15px;line-height:1.7;color:var(--text-muted);max-width:340px;}
+.notification-settings .notification-error {color:#b42318;}
+.home-header .nav-actions {display:flex;align-items:center;gap:4px;}
+
+.notification-toggle {width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;background:var(--bg-light);border-radius:16px;font-size:16px;}
+.notification-toggle-track {width:51px;height:31px;border-radius:20px;background:#d2d5da;padding:2px;transition:background-color 180ms ease;}
+.notification-toggle-track>span {display:block;width:27px;height:27px;border-radius:50%;background:white;box-shadow:0 1px 3px #0002;transition:transform 220ms var(--motion-ease);}
+.notification-toggle[aria-checked="true"] .notification-toggle-track {background:var(--accent);}
+.notification-toggle[aria-checked="true"] .notification-toggle-track>span {transform:translateX(20px);}

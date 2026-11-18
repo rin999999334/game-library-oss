@@ -1,0 +1,25 @@
+name: 情報の訂正・追加
+description: ゲーム・カード・参加記録の修正を提案する
+body:
+  - type: markdown
+    attributes:
+      value: 未公開の資料・秘密情報・個人情報は記入しないでください。取り下げ相談は公開前に設定される非公開窓口へお願いします。
+  - type: input
+    id: target
+    attributes:
+      label: 対象ページ・ゲーム名
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: 現在の内容と、正しい内容
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 確認できる公開の出典
+      description: 不明な場合は不明と書いてください。
+    validations:
+      required: true
